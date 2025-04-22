@@ -6,11 +6,13 @@ public:
     int subjectId;
     string subjectName;
     int score;
+    string date;
 
-    Grade(int newSubjectId, string newSubjectName, int newScore) {
+    Grade(int newSubjectId, string newSubjectName, int newScore, string newDate) {
         subjectId = newSubjectId;
         subjectName = newSubjectName;
         score = newScore;
+        date = newDate;
     }
 };
 
@@ -44,7 +46,7 @@ public:
     void Log() override {
         Person::Log();
         for(int i = 0; i < gradesCount; i++) {
-            cout << grades[i].subjectName << " - " << grades[i].score << endl;
+            cout << grades[i].subjectName << " - " << grades[i].score << " - " << grades[i].date << endl;
         }
     }
 };
