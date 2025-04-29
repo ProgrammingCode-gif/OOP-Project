@@ -1,20 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Grade {
-public: 
-    int subjectId;
-    string subjectName;
-    int score;
-    string date;
 
-    Grade(int newSubjectId, string newSubjectName, int newScore, string newDate) {
-        subjectId = newSubjectId;
-        subjectName = newSubjectName;
-        score = newScore;
-        date = newDate;
-    }
-};
 
 class Person {
     int id;
@@ -49,4 +36,37 @@ public:
             cout << grades[i].subjectName << " - " << grades[i].score << " - " << grades[i].date << endl;
         }
     }
+};
+class Teacher : public Person {
+    int subjectID;
+    string subjectName;
+    int groups[5];//хз сколько групп будет
+ public:
+     Teacher(){}
+     Teacher(int newId, string newName, string newSurname, int newSubjectID, string newSubjectName, int newGroups[])
+         :Person(newId, newName, newSurname) {
+         subjectID = newSubjectID;
+         subjectName = newSubjectName;
+         groups = newGroups;
+     }
+     void show_subjectID() {
+         cout << subjectID;
+    }
+     void show_subjectName() {
+         cout << subjectName;
+     }
+     void show_all_groups() {
+         int arrSize=sizeof(groups)\sizeof(groups[0])
+             cout << "groups that you have\n";
+         for (int i = 0; i < arrSize; i++)
+         {
+             cout <<i+1<<") " << groups[i] << ;
+         }
+     }
+     void show_all() {
+     Person::Log();
+     show_all_groups();
+     show_subjectName();
+     show_subjectID();
+     }
 };
