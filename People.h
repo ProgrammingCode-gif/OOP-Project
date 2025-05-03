@@ -63,7 +63,9 @@ class Group{
         students=newStudents;
         numberOfStudents=count;
     };
-    
+    int get_id(){
+        return GroupId;
+    }
     void log(){
         for (int i = 0; i < numberOfStudents; i++)
         {
@@ -75,16 +77,14 @@ class Group{
 class Teacher : public Person {
     int subjectID;
     string subjectName;
-    int groups[5];
+    Group* groups;
 public:
     Teacher() {};
-    Teacher(int newId, string newName, string newSurname, int newSubjectID, string newSubjectName, int newGroups[])
+    Teacher(int newId, string newName, string newSurname, int newSubjectID, string newSubjectName, Group* newGroups)
         :Person(newId, newName, newSurname) {
         subjectID = newSubjectID;
         subjectName = newSubjectName;
-        for (int i = 0; i < 5; ++i) {
-            groups[i] = newGroups[i];
-        }
+        groups = newGroups;
     }
     void show_subjectID() {
         cout << subjectID;
@@ -97,7 +97,7 @@ public:
         cout << "groups that you have\n";
         for (int i = 0; i < arrSize; i++)
         {
-            cout << i + 1 << ") " << groups[i] << endl;
+            cout << i + 1 << ") " << groups[i].get_id() << endl;
         }
     }
     void show_all() {
@@ -105,5 +105,13 @@ public:
         show_all_groups();
         show_subjectName();
         show_subjectID();
+    }
+    void choose_group(int group_numb){
+        cout<<"Students of "<< group_numb<< " group\n";
+        groups[group_numb-1].log();
+        
+    }
+    void add_grade(){
+
     }
 };
