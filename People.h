@@ -3,6 +3,21 @@
 using namespace std;
 
 
+class Grade {
+    public:
+        int subjectId;
+        string subjectName;
+        int score;
+        string date;
+        Grade() {};
+        Grade(int newSubjectId, string newSubjectName, int newScore, string newDate) {
+            subjectId = newSubjectId;
+            subjectName = newSubjectName;
+            score = newScore;
+            date = newDate;
+        }
+    };
+
 
 class Person {
     int id;
@@ -31,7 +46,7 @@ public:
         grades = newGrades;
         gradesCount = count;
     }
-
+    
     void Log() override {
         Person::Log();
         for (int i = 0; i < gradesCount; i++) {
@@ -39,17 +54,34 @@ public:
         }
     }
 };
+class Group{
+    public:
+    int numberOfStudents;
+    Student* students;
+    int GroupId;
+    Group(Student* newStudents, int count){
+        students=newStudents;
+        numberOfStudents=count;
+    };
+    
+    void log(){
+        for (int i = 0; i < numberOfStudents; i++)
+        {
+            students[i].Person::Log();
+        }
+        
+    };
+};
 class Teacher : public Person {
     int subjectID;
     string subjectName;
-    int groups[5];//хз сколько групп будет
+    int groups[5];
 public:
     Teacher() {};
     Teacher(int newId, string newName, string newSurname, int newSubjectID, string newSubjectName, int newGroups[])
         :Person(newId, newName, newSurname) {
         subjectID = newSubjectID;
         subjectName = newSubjectName;
-        cout << newGroups << "sdjkhakjshdkahsdjk" << endl;
         for (int i = 0; i < 5; ++i) {
             groups[i] = newGroups[i];
         }
