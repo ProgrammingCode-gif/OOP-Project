@@ -31,7 +31,7 @@ int main() {
     Group* groupAll=new Group[2]{group0, group1};
     Teacher t0(007, "Sarvar", "ya xz", 02, "i.t. IT", groupAll);
     //t1.show_all();
-    //s1.Log();
+    s1.Log();
     //group1.log();
     t0.choose_group(2);
     delete[] grades1;
