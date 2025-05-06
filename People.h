@@ -4,11 +4,11 @@ using namespace std;
 
 
 class Grade {
+    int subjectId;
+    string subjectName;
+    int score;
+    string date;
     public:
-        int subjectId;
-        string subjectName;
-        int score;
-        string date;
         Grade() {};
         Grade(int newSubjectId, string newSubjectName, int newScore, string newDate) {
             subjectId = newSubjectId;
@@ -16,6 +16,12 @@ class Grade {
             score = newScore;
             date = newDate;
         }
+    void Log(){
+        cout << subjectName << " - " << score << " - " << date << endl;
+    }
+    int get_subj_ID(){
+        return subjectId;
+    }
     };
 
 
@@ -47,12 +53,50 @@ public:
         gradesCount = count;
     }
     
+    void get_OOP_Grades(){
+        for (int i = 0; i < gradesCount; i++) {
+            if (grades[i].get_subj_ID()==1)
+            {
+                grades[i].Log();
+            }
+            
+        }
+    }
+    void get_calc_Grades(){
+        for (int i = 0; i < gradesCount; i++) {
+            if (grades[i].get_subj_ID()==2)
+            {
+                grades[i].Log();
+            }
+            
+        }
+    }
+    void get_phys_Grades(){
+        for (int i = 0; i < gradesCount; i++) {
+            if (grades[i].get_subj_ID()==3)
+            {
+                grades[i].Log();
+            }
+            
+        }
+    }
+    void get_AE_Grades(){
+        for (int i = 0; i < gradesCount; i++) {
+            if (grades[i].get_subj_ID()==4)
+            {
+                grades[i].Log();
+            }
+            
+        }
+    }
+
     void Log() override {
         Person::Log();
         for (int i = 0; i < gradesCount; i++) {
-            cout << grades[i].subjectName << " - " << grades[i].score << " - " << grades[i].date << endl;
+            grades[i].Log();
         }
     }
+    
 };
 class Group{
     public:
@@ -65,6 +109,9 @@ class Group{
     };
     int get_id(){
         return GroupId;
+    }
+    Student get_student(int student_numb){
+        return students[student_numb-1];
     }
     void log(){
         for (int i = 0; i < numberOfStudents; i++)
@@ -106,10 +153,20 @@ public:
         show_subjectName();
         show_subjectID();
     }
+    void add_grade(Student student){
+
+    }
+    void choose_student(int group_numb,int student_numb){
+        groups[group_numb-1].get_student(student_numb).Log();
+        add_grade(groups[group_numb-1].get_student(student_numb));
+    }
     void choose_group(int group_numb){
+        int student_numb;
         cout<<"Students of "<< group_numb<< " group\n";
         groups[group_numb-1].log();
-        
+        cout<<"choose student number:";//not ID
+        cin>>student_numb;
+        choose_student(group_numb,student_numb);
     }
     void add_grade(){
 
