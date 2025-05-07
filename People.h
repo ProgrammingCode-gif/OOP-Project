@@ -3,6 +3,7 @@
 using namespace std;
 
 
+
 class Grade {
     int subjectId;
     string subjectName;
@@ -37,6 +38,11 @@ public:
         name = newName;
         surname = newSurname;
     }
+
+    string get_name(){
+        return name;
+    }
+
     virtual void Log() {
         cout << "ID: " << id << " Name: " << name << " Surname: " << surname << endl;
     }
@@ -103,7 +109,9 @@ class Group{
     int numberOfStudents;
     Student* students;
     int GroupId;
-    Group(Student* newStudents, int count){
+    Group(){};
+    Group(Student* newStudents,int NewGroupId, int count){
+        GroupId=NewGroupId;
         students=newStudents;
         numberOfStudents=count;
     };
@@ -113,6 +121,9 @@ class Group{
     Student get_student(int student_numb){
         return students[student_numb-1];
     }
+    int get_Number_of(){
+        return numberOfStudents;
+    }
     void log(){
         for (int i = 0; i < numberOfStudents; i++)
         {
@@ -121,6 +132,42 @@ class Group{
         
     };
 };
+
+class Attendence{
+    string date;
+    Group group;
+    int subjID;
+    bool attend[2];//Надо либо сделать что бы подстраивалось под количество в группе либо одинаковое количество всегда
+    public:
+    Attendence(){};
+    Attendence(string newDate,Group newGroup, int newSubjID){
+        date=newDate;
+        group=newGroup;
+        subjID=newSubjID;
+    }
+    void Log(){
+        cout<<"Group "<<group.get_id()<<" attendence list:\n";
+        cout<<"Name\tdate\n\t"<<date<<endl;
+
+        for (int i = 0; i < 2; i++)
+        {
+            cout<<group.get_student(i+1).get_name()<<"\t";
+            if (attend[i])
+            {
+                cout<<"yes";
+            }else{
+                cout<<"no";
+            }
+            cout<<endl;
+            
+        }
+        
+    }
+    void check_attend(int stud_numb){
+
+    }
+};
+
 class Teacher : public Person {
     int subjectID;
     string subjectName;
@@ -140,12 +187,12 @@ public:
         cout << subjectName;
     }
     void show_all_groups() {
-        int arrSize = sizeof(groups) / sizeof(groups[0]);
-        cout << "groups that you have\n";
+        int arrSize = 2;
         for (int i = 0; i < arrSize; i++)
         {
-            cout << i + 1 << ") " << groups[i].get_id() << endl;
+            cout << i + 1 << ") " <<"Group number "<< groups[i].get_id() << endl;
         }
+        cout<<endl;
     }
     void show_all() {
         Person::Log();
