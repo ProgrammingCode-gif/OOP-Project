@@ -119,6 +119,10 @@ class Group{
         return GroupId;
     }
     Student get_student(int student_numb){
+        if (student_numb < 0 || student_numb >= numberOfStudents) {
+            cout << "Invalid student index!\n";
+            return students[0]; // return default-constructed student
+        }
         return students[student_numb-1];
     }
     int get_Number_of(){
@@ -145,7 +149,7 @@ class Attendence{
         group=newGroup;
         subjID=newSubjID;
     }
-    void Log(){
+    void Log_teacher(){
         cout<<"Group "<<group.get_id()<<" attendence list:\n";
         cout<<"Name\tdate\n\t"<<date<<endl;
 
@@ -162,6 +166,18 @@ class Attendence{
             
         }
         
+    }
+    void Log_student(int student_numb){
+
+        cout<<date<<"\t";
+
+        if (attend[student_numb])
+        {
+            cout<<"yes";
+        }else{
+            cout<<"no";
+        }
+        cout<<endl;
     }
     void check_attend(int stud_numb){
 

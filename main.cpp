@@ -3,6 +3,9 @@
 #include "other.h"
 using namespace std;
 
+// void get_marks(){
+    
+// }
 
 int main() {
     
@@ -50,6 +53,10 @@ int main() {
     Attendence d2g1s2("21.06.25",group0,2);
     Attendence d2g2s2("21.06.25",group1,2);
 
+    Attendence* OOP_att=new Attendence[4]{d1g1s1, d1g2s1,d2g1s1,d2g2s1};
+    Attendence* Calc_att=new Attendence[4]{d1g1s2, d1g2s2,d2g1s2,d2g2s2};
+
+
     Teacher t0(007, "Sarvar", "ya xz", 02, "i.t. IT", groupAll);
 
 
@@ -61,20 +68,27 @@ int main() {
         case 1:
         
         break;
-        // case 2:
-        // cout<<"Welcome to Eclass, choose group to make changes\n";
-        // t0.show_all_groups();
-        // cin>>choosing;
-        //     switch (choosing)
-        //     {
-        //     case 0:
-                
-        //         break;
-            
-        //     default:
-        //         break;
-        //     }
-        // break;
+        case 2:
+        cout<<"Welcome to Eclass, choose group to make changes\n";
+        t0.show_all_groups();
+        cin>>choosing;
+            switch (choosing)
+            {
+            case 1:
+            for (int i = 0; i < 4; i+=2)
+            {
+             OOP_att[i].Log_teacher();  
+            }
+                break;
+            case 2:                
+            for (int i = 1; i < 4; i+=2)
+            {
+             OOP_att[i].Log_teacher();  
+            }
+            default:
+                break;
+            }
+        break;
         case 3:
         cout<<"Welcome to Eclass, choose course you want check\n1)Objective Oriented Programming\n2)Calculus\n3)Physics\n4)Academic English\nEnter:";
         cin>>choosing;    
@@ -91,7 +105,14 @@ int main() {
                     
                     break;
                     case 2:
+                    cout<<"Date\t\t Attendence\n";
+                    for (int i = 0; i < 4; i+=2)
+                    {
+
+                        OOP_att[i].Log_student(0);
+                    }
                     
+
                     break;
                     default:
                     cout<<"Wrong!";
@@ -109,7 +130,12 @@ int main() {
                     
                     break;
                     case 2:
-                    
+                    cout<<"Date\t\t Attendence\n";
+                    for (int i = 0; i < 4; i+=2)
+                    {
+
+                        Calc_att[i].Log_student(0);
+                    }
                     break;
                     default:
                     cout<<"Wrong!";
@@ -165,8 +191,16 @@ int main() {
     // s1.Log();
     // group1.log();
     //  t0.choose_group(2);
+
+    delete[] OOP_att;
+    delete[] Calc_att;
+    delete[] grades0;
     delete[] grades1;
     delete[] grades2;
+    delete[] grades3;
     delete[] students1;
+    delete[] students2;
+    delete[] groupAll;
     return 0;
+
 }
