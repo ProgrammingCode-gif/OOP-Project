@@ -42,6 +42,9 @@ public:
     string get_name(){
         return name;
     }
+    void show_name(){
+        cout<<name;
+    }
 
     virtual void Log() {
         cout << "ID: " << id << " Name: " << name << " Surname: " << surname << endl;
@@ -141,11 +144,14 @@ class Group{
         return GroupId;
     }
     Student get_student(int student_numb){
-        if (student_numb < 0 || student_numb >= numberOfStudents) {
-            cout << "Invalid student index!\n";
-            return students[0]; // return default-constructed student
-        }
-        return students[student_numb-1];
+        // if (student_numb < 0 || student_numb >= numberOfStudents) {
+        //     cout << "Invalid student index!\n";
+        //     return students[0]; // return default-constructed student
+        // }
+        return students[student_numb];
+    }
+    void show_name(int student_numb){
+        students[student_numb].show_name();
     }
     int get_Number_of(){
         return numberOfStudents;
@@ -163,7 +169,7 @@ class Attendence{
     string date;
     Group group;
     int subjID;
-    bool attend[2];//Надо либо сделать что бы подстраивалось под количество в группе либо одинаковое количество всегда
+    bool attend[2]={true,true};//Надо либо сделать что бы подстраивалось под количество в группе либо одинаковое количество всегда
     public:
     Attendence(){};
     Attendence(string newDate,Group newGroup, int newSubjID){
@@ -172,18 +178,20 @@ class Attendence{
         subjID=newSubjID;
     }
     void Log_teacher(){
-        cout<<"Group "<<group.get_id()<<" attendence list:\n";
-        cout<<"Name\tdate\n\t"<<date<<endl;
+        int count = group.get_Number_of();
+        cout<<"Name\t"<<date<<endl;
 
-        for (int i = 0; i < 2; i++)
+
+        for (int i = 0; i < count; i++)
         {
-            cout<<group.get_student(i+1).get_name()<<"\t";
-            if (attend[i])
-            {
-                cout<<"yes";
-            }else{
+            group.show_name(i);
+            cout<<"\t";
+            // if (attend[i])
+            // {
+            //     cout<<"yes";
+            // }else{
                 cout<<"no";
-            }
+            // }
             cout<<endl;
             
         }
@@ -242,8 +250,8 @@ public:
 
     }
     void choose_student(int group_numb,int student_numb){
-        groups[group_numb-1].get_student(student_numb).Log();
-        add_grade(groups[group_numb-1].get_student(student_numb));
+        groups[group_numb-1].get_student(student_numb-1).Log();
+        add_grade(groups[group_numb-1].get_student(student_numb-1));
     }
     void choose_group(int group_numb){
         int student_numb;

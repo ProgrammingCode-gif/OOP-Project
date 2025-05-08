@@ -81,23 +81,48 @@ int main() {
         case 2:
         cout<<"Welcome to Eclass, choose group to make changes\n";
         t0.show_all_groups();
+        cout<<"Enter:";
         cin>>choosing;
             switch (choosing)
             {
-            case 1:
-            for (int i = 0; i < 4; i+=2)
-            {
-             OOP_att[i].Log_teacher();  
-            }
+            case 1://group 9
+                cout<<"You chose group 9. What you want to do?\n1)Check attendence\n2)Add grade\nEnter:";
+                cin>>choosing;
+                switch (choosing)
+                {
+                case 1:
+                cout<<"Group 9 attendence list:\n";
+                for (int i = 0; i < 4; i+=2)
+                {
+                    OOP_att[i].Log_teacher();  
+                }
+                 break;
+                
+                default:
+                    break;
+                }
                 break;
-            case 2:                
+            case 2://group 10
+            cout<<"You chose group 9. What you want to do?\n1)Check attendence\n2)Add grade\nEnter:";
+            cin>>choosing;
+            switch (choosing)
+            {
+            case 1:
+            cout<<"Group 10 attendence list:\n";
             for (int i = 1; i < 4; i+=2)
             {
-             OOP_att[i].Log_teacher();  
+            OOP_att[i].Log_teacher();  
             }
+             break;
+            
             default:
                 break;
             }
+            break;
+            default:
+                break;
+            }
+                
         break;
         case 3:
         cout<<"Welcome to Eclass, choose course you want check\n1)Objective Oriented Programming\n2)Calculus\n3)Physics\n4)Academic English\nEnter:";
@@ -196,11 +221,12 @@ int main() {
           break;
         default:
           cout<<"Wrong!";
+
       };
-    t0.show_all();
-    s1.Log();
-    group1.log();
-     t0.choose_group(2);
+    // t0.show_all();
+    // s1.Log();
+    // group1.log();
+    //  t0.choose_group(2);
 
     delete[] OOP_att;
     delete[] Calc_att;
