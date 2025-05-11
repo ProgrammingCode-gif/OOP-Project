@@ -3,7 +3,7 @@
 #include "Student.h"
 #include "Group.h"
 #include "Attendence.h"
-#include "Teacher.h"3
+#include "Teacher.h"
 #include "other.h"
 using namespace std;
 
