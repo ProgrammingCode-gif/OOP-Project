@@ -1,5 +1,9 @@
 #include <iostream>
-#include "People.h"
+// #include "People.h"
+#include "Student.h"
+#include "Group.h"
+#include "Attendence.h"
+#include "Teacher.h"3
 #include "other.h"
 using namespace std;
 
