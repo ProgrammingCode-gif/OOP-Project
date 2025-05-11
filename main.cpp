@@ -8,6 +8,23 @@ void add_grade(Student& stud, int newSubjectId, string newSubjectName, int newSc
     stud.add_grade(g);
 }
 
+void add_grade2(Group& group){
+    int score, choosing;
+    string date;
+    group.log();
+    cout<<"Choose student to add mark:\n";
+    cin>>choosing;
+    cout<<"Enter"; 
+    cin>>date;
+    cout<<"Enter date of the mark:";
+    cin>>score;
+    cout<<"Enter score of the mark:";
+    add_grade(group.get_student_ref(choosing-1), 1, "OOP", score, date);
+    group.get_student_ref(choosing-1).Log();
+    group.get_student_ref(choosing-1).Log();    
+    cout<<"dsds";
+};
+
 // void get_marks(){
     
 // }
@@ -72,6 +89,8 @@ int main() {
 
     int log_in;
     int choosing;
+    string date;
+    int score;
     cout<<"what you want to be logged in?\n1)Admin\n2)Teacher\n3)Student\nEnter:";
     cin>>log_in;
     switch(log_in) {
@@ -97,27 +116,29 @@ int main() {
                     OOP_att[i].Log_teacher();  
                 }
                  break;
-                
+                case 2:
+                add_grade2(group0);
                 default:
                     break;
                 }
                 break;
             case 2://group 10
-            cout<<"You chose group 9. What you want to do?\n1)Check attendence\n2)Add grade\nEnter:";
-            cin>>choosing;
-            switch (choosing)
-            {
-            case 1:
-            cout<<"Group 10 attendence list:\n";
-            for (int i = 1; i < 4; i+=2)
-            {
-            OOP_att[i].Log_teacher();  
-            }
-             break;
-            
-            default:
-                break;
-            }
+                            cout<<"You chose group 10. What you want to do?\n1)Check attendence\n2)Add grade\nEnter:";
+                cin>>choosing;
+                switch (choosing)
+                {
+                case 1:
+                cout<<"Group 10 attendence list:\n";
+                for (int i = 1; i < 4; i+=2)
+                {
+                    OOP_att[i].Log_teacher();  
+                }
+                 break;
+                case 2:
+                add_grade2(group1);
+                default:
+                    break;
+                }
             break;
             default:
                 break;

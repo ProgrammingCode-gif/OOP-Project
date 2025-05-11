@@ -150,6 +150,9 @@ class Group{
         // }
         return students[student_numb];
     }
+    Student& get_student_ref(int index) {
+        return students[index]; 
+    }
     void show_name(int student_numb){
         students[student_numb].show_name();
     }
