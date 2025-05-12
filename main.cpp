@@ -1,10 +1,33 @@
 #include <iostream>
-// #include "People.h"
-#include "Student.h"
-#include "Group.h"
-#include "Attendence.h"
-#include "Teacher.h"
+#include "./include/Group.h"
+#include "./include/Attendence.h"
+#include "./include/Student.h"
+#include "./include/Teacher.h"
 using namespace std;
+
+void handle_course(Student &student, Attendence *attendenceArray, int subjectId, const string &courseName)
+{
+    int choosing;
+    cout << "What you want to check for " << courseName << "?\n1)Marks\n2)Attendence\nEnter: ";
+    cin >> choosing;
+
+    switch (choosing)
+    {
+    case 1:
+        student.get_Grades_by_Subject(subjectId);
+        break;
+    case 2:
+        cout << "Date\t\t Attendence\n";
+        for (int i = 0; i < 4; i += 2)
+        {
+            attendenceArray[i].Log_student(0); // Здесь можно сделать гибким выбор студента
+        }
+        break;
+    default:
+        cout << "Wrong!";
+        break;
+    }
+}
 
 void add_grade(Student &stud, int newSubjectId, string newSubjectName, int newScore, string newDate)
 {
@@ -148,91 +171,24 @@ int main()
         }
 
         break;
-    case 3:
-        cout << "Welcome to Eclass, choose course you want check\n1)Objective Oriented Programming\n2)Calculus\n3)Physics\n4)Academic English\nEnter:";
+        case 3:
+        cout << "Welcome to Eclass, choose course you want to check\n1)Objective Oriented Programming\n2)Calculus\n3)Physics\n4)Academic English\nEnter:";
         cin >> choosing;
+    
         switch (choosing)
         {
-        case 1: // oop
-            cout << "What you want to check for this course?\n1)Marks\n2)Attendence\nEnter:";
-            cin >> choosing;
-            switch (choosing)
-            {
-            case 1:
-                s1.get_OOP_Grades(); // потом надо будет сделать flexible под любого студента через log_in
-
-                break;
-            case 2:
-                cout << "Date\t\t Attendence\n";
-                for (int i = 0; i < 4; i += 2)
-                {
-
-                    OOP_att[i].Log_student(0);
-                }
-
-                break;
-            default:
-                cout << "Wrong!";
-                break;
-            }
+        case 1: // OOP
+            handle_course(s1, OOP_att, 1, "Objective Oriented Programming");
             break;
-        case 2: // calc
-            cout << "What you want to check for this course?\n1)Marks\n2)Attendence\nEnter:";
-            cin >> choosing;
-            switch (choosing)
-            {
-            case 1:
-                s1.get_calc_Grades();
-
-                break;
-            case 2:
-                cout << "Date\t\t Attendence\n";
-                for (int i = 0; i < 4; i += 2)
-                {
-
-                    Calc_att[i].Log_student(0);
-                }
-                break;
-            default:
-                cout << "Wrong!";
-                break;
-            }
+        case 2: // Calculus
+            handle_course(s1, Calc_att, 2, "Calculus");
             break;
-        case 3: // phys
-            cout << "What you want to check for this course?\n1)Marks\n2)Attendence\nEnter:";
-            cin >> choosing;
-            switch (choosing)
-            {
-            case 1:
-                s1.get_phys_Grades();
-
-                break;
-            case 2:
-
-                break;
-            default:
-                cout << "Wrong!";
-                break;
-            }
-        case 4: // AE
-            cout << "What you want to check for this course?\n1)Marks\n2)Attendence\nEnter:";
-            cin >> choosing;
-            switch (choosing)
-            {
-            case 1:
-                s1.get_AE_Grades();
-
-                break;
-            case 2:
-
-                break;
-            default:
-                cout << "Wrong!";
-                break;
-            }
-
-            break; // ae
-
+        case 3: // Physics
+            handle_course(s1, Calc_att, 3, "Physics");
+            break;
+        case 4: // Academic English
+            handle_course(s1, Calc_att, 4, "Academic English");
+            break;
         default:
             cout << "Wrong!";
             break;

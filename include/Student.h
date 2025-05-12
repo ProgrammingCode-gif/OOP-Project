@@ -54,7 +54,7 @@ public:
         delete[] grades;
     }
 
-    void add_grade(const Grade &g)//функция добавления оценок для студента
+    void add_grade(const Grade &g) // функция добавления оценок для студента
     {
         Grade *newGrades = new Grade[gradesCount + 1];
         for (int i = 0; i < gradesCount; ++i)
@@ -68,41 +68,52 @@ public:
         gradesCount++;
     }
 
-    void get_OOP_Grades()//показать оценки по разным предметам
+    // void get_OOP_Grades()//показать оценки по разным предметам
+    // {
+    //     for (int i = 0; i < gradesCount; i++)
+    //     {
+    //         if (grades[i].get_subj_ID() == 1)
+    //         {
+    //             grades[i].Log();
+    //         }
+    //     }
+    // }
+    // void get_calc_Grades()
+    // {
+    //     for (int i = 0; i < gradesCount; i++)
+    //     {
+    //         if (grades[i].get_subj_ID() == 2)
+    //         {
+    //             grades[i].Log();
+    //         }
+    //     }
+    // }
+    // void get_phys_Grades()
+    // {
+    //     for (int i = 0; i < gradesCount; i++)
+    //     {
+    //         if (grades[i].get_subj_ID() == 3)
+    //         {
+    //             grades[i].Log();
+    //         }
+    //     }
+    // }
+    // void get_AE_Grades()
+    // {
+    //     for (int i = 0; i < gradesCount; i++)
+    //     {
+    //         if (grades[i].get_subj_ID() == 4)
+    //         {
+    //             grades[i].Log();
+    //         }
+    //     }
+    // }
+
+    void get_Grades_by_Subject(int subjectId) 
     {
         for (int i = 0; i < gradesCount; i++)
         {
-            if (grades[i].get_subj_ID() == 1)
-            {
-                grades[i].Log();
-            }
-        }
-    }
-    void get_calc_Grades()
-    {
-        for (int i = 0; i < gradesCount; i++)
-        {
-            if (grades[i].get_subj_ID() == 2)
-            {
-                grades[i].Log();
-            }
-        }
-    }
-    void get_phys_Grades()
-    {
-        for (int i = 0; i < gradesCount; i++)
-        {
-            if (grades[i].get_subj_ID() == 3)
-            {
-                grades[i].Log();
-            }
-        }
-    }
-    void get_AE_Grades()
-    {
-        for (int i = 0; i < gradesCount; i++)
-        {
-            if (grades[i].get_subj_ID() == 4)
+            if (grades[i].get_subj_ID() == subjectId)
             {
                 grades[i].Log();
             }
