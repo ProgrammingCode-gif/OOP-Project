@@ -54,7 +54,7 @@ public:
         delete[] grades;
     }
 
-    void add_grade(const Grade &g)
+    void add_grade(const Grade &g)//функция добавления оценок для студента
     {
         Grade *newGrades = new Grade[gradesCount + 1];
         for (int i = 0; i < gradesCount; ++i)
@@ -68,7 +68,7 @@ public:
         gradesCount++;
     }
 
-    void get_OOP_Grades()
+    void get_OOP_Grades()//показать оценки по разным предметам
     {
         for (int i = 0; i < gradesCount; i++)
         {

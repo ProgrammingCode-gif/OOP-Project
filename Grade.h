@@ -19,11 +19,11 @@ public:
         score = newScore;
         date = newDate;
     }
-    void Log()
+    void Log()// выводит информацию о оценке
     {
         cout << subjectName << " - " << score << " - " << date << endl;
     }
-    int get_subj_ID()
+    int get_subj_ID()// возвращает ID предмета
     {
         return subjectId;
     }

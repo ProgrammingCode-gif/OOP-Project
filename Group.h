@@ -17,11 +17,11 @@ public:
         students = newStudents;
         numberOfStudents = count;
     };
-    int get_id()
+    int get_id()//получить номер группы
     {
         return GroupId;
     }
-    Student get_student(int student_numb)
+    Student get_student(int student_numb)//получить обьект студента 
     {
         // if (student_numb < 0 || student_numb >= numberOfStudents) {
         //     cout << "Invalid student index!\n";
@@ -29,19 +29,19 @@ public:
         // }
         return students[student_numb];
     }
-    Student &get_student_ref(int index)
+    Student &get_student_ref(int index)//получить ссылку на обьект студента
     {
         return students[index];
     }
-    void show_name(int student_numb)
+    void show_name(int student_numb)//показать имя студента
     {
         students[student_numb].show_name();
     }
-    int get_Number_of()
+    int get_Number_of()//получить количество студентов
     {
         return numberOfStudents;
     }
-    void log()
+    void log()//вывести каждого студента
     {
         for (int i = 0; i < numberOfStudents; i++)
         {

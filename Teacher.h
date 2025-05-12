@@ -20,15 +20,15 @@ public:
         subjectName = newSubjectName;
         groups = newGroups;
     }
-    void show_subjectID()
+    void show_subjectID()// выводит ID предмета
     {
         cout << subjectID;
     }
-    void show_subjectName()
+    void show_subjectName()// выводит название предмета
     {
         cout << subjectName;
     }
-    void show_all_groups()
+    void show_all_groups()// Выводит все группы
     {
         int arrSize = 2;
         for (int i = 0; i < arrSize; i++)
@@ -37,22 +37,22 @@ public:
         }
         cout << endl;
     }
-    void show_all()
+    void show_all()//все перечисленное выше выводит на экран
     {
         Person::Log();
         show_all_groups();
         show_subjectName();
         show_subjectID();
     }
-    void add_grade(Student student)
-    {
-    }
-    void choose_student(int group_numb, int student_numb)
+    // void add_grade(Student student)
+    // {
+    // }
+    void choose_student(int group_numb, int student_numb)//выводит студентов для выбора
     {
         groups[group_numb - 1].get_student(student_numb - 1).Log();
-        add_grade(groups[group_numb - 1].get_student(student_numb - 1));
+        //add_grade(groups[group_numb - 1].get_student(student_numb - 1));
     }
-    void choose_group(int group_numb)
+    void choose_group(int group_numb)//выводит группу для выбора
     {
         int student_numb;
         cout << "Students of " << group_numb << " group\n";
@@ -61,7 +61,5 @@ public:
         cin >> student_numb;
         choose_student(group_numb, student_numb);
     }
-    void add_grade()
-    {
-    }
+
 };

@@ -18,16 +18,16 @@ public:
         surname = newSurname;
     }
 
-    string get_name()
+    string get_name()//получить имя
     {
         return name;
     }
-    void show_name()
+    void show_name()//показать имя
     {
         cout << name;
     }
 
-    virtual void Log()
+    virtual void Log()//вывод информации о человеке
     {
         cout << "ID: " << id << " Name: " << name << " Surname: " << surname << endl;
     }
