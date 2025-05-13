@@ -73,19 +73,25 @@ int main()
     new Grade[gradeCount]{},
     new Grade[gradeCount]{},
     new Grade[gradeCount]{}
-};
+    };
 
-for (int i = 0; i < 4; ++i) {
-    read_grades(file, allGrades[i], gradeCount);
-}
+    for (int i = 0; i < 4; ++i) {
+        read_grades(file, allGrades[i], gradeCount);
+    }
+    file.close();
 
+    // fstream file;
+    file.open("student.dat", ios::in| ios::out| ios::binary);
 
-    Student s0(243, "Shahzod", "Tashev", allGrades[0], 4);
-    Student s1(250, "Marat", "Turakulov", allGrades[1], 4);
-    Student s2(228, "Timur", "Shomuratov", allGrades[2], 4);
-    Student s3(237, "Bulat", "Tsoy", allGrades[3], 4);
-
-
+    Student s0(allGrades[0], 4);
+    Student s1(allGrades[1], 4);
+    Student s2(allGrades[2], 4);
+    Student s3(allGrades[3], 4);
+    s0.read_data(file);
+    s1.read_data(file);
+    s2.read_data(file);
+    s3.read_data(file);
+    
     Student *students1 = new Student[2]{s0, s1};
     Student *students2 = new Student[2]{s2, s3};
 
@@ -93,7 +99,7 @@ for (int i = 0; i < 4; ++i) {
     Group group1(students2, 10, 2);
     Group *groupAll = new Group[2]{group0, group1};
 
-    Attendence d1g1s1("21.04.25", group0, 1); // d-day g-group s-subject
+    Attendence d1g1s1("21.04.25", group0, 1);
     Attendence d1g2s1("21.04.25", group1, 1);
     Attendence d1g1s2("21.04.25", group0, 2);
     Attendence d1g2s2("21.04.25", group1, 2);
@@ -105,7 +111,8 @@ for (int i = 0; i < 4; ++i) {
     Attendence *OOP_att = new Attendence[4]{d1g1s1, d1g2s1, d2g1s1, d2g2s1};
     Attendence *Calc_att = new Attendence[4]{d1g1s2, d1g2s2, d2g1s2, d2g2s2};
 
-    Teacher t0(007, "Sarvar", "ya xz", 02, "i.t. IT", groupAll);
+    Teacher t0(001, "Sharof", "Suvanov", 02, "i.t. IT", groupAll);
+    Teacher t1(002, "Steftcho", "Dokov", 02, "i.t. IT", groupAll);
 
     int log_in;
     int choosing;

@@ -16,8 +16,18 @@ public:
         grades = nullptr;
         gradesCount = 0;
     }
-    Student(int newId, string newName, string newSurname, Grade *newGrades, int count)
-        : Person(newId, newName, newSurname)
+    Student(int newId, string newName, string newSurname, Grade *newGrades, int count,string newPassword="password")
+        : Person(newId, newName, newSurname, newPassword)
+    {
+        grades = new Grade[count];
+        for (int i = 0; i < count; ++i)
+        {
+            grades[i] = newGrades[i];
+        }
+        gradesCount = count;
+    }
+    Student(Grade *newGrades, int count)
+        : Person()
     {
         grades = new Grade[count];
         for (int i = 0; i < count; ++i)
@@ -33,6 +43,7 @@ public:
         for (int i = 0; i < gradesCount; ++i)
             grades[i] = other.grades[i];
     }
+
 
     // оператор присваивания
     Student &operator=(const Student &other)
@@ -68,46 +79,6 @@ public:
         gradesCount++;
     }
 
-    // void get_OOP_Grades()//показать оценки по разным предметам
-    // {
-    //     for (int i = 0; i < gradesCount; i++)
-    //     {
-    //         if (grades[i].get_subj_ID() == 1)
-    //         {
-    //             grades[i].Log();
-    //         }
-    //     }
-    // }
-    // void get_calc_Grades()
-    // {
-    //     for (int i = 0; i < gradesCount; i++)
-    //     {
-    //         if (grades[i].get_subj_ID() == 2)
-    //         {
-    //             grades[i].Log();
-    //         }
-    //     }
-    // }
-    // void get_phys_Grades()
-    // {
-    //     for (int i = 0; i < gradesCount; i++)
-    //     {
-    //         if (grades[i].get_subj_ID() == 3)
-    //         {
-    //             grades[i].Log();
-    //         }
-    //     }
-    // }
-    // void get_AE_Grades()
-    // {
-    //     for (int i = 0; i < gradesCount; i++)
-    //     {
-    //         if (grades[i].get_subj_ID() == 4)
-    //         {
-    //             grades[i].Log();
-    //         }
-    //     }
-    // }
 
     void get_Grades_by_Subject(int subjectId) 
     {
@@ -128,4 +99,6 @@ public:
             grades[i].Log();
         }
     }
+
+    
 };

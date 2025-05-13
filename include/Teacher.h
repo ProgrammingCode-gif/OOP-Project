@@ -13,8 +13,8 @@ class Teacher : public Person
 
 public:
     Teacher() {};
-    Teacher(int newId, string newName, string newSurname, int newSubjectID, string newSubjectName, Group *newGroups)
-        : Person(newId, newName, newSurname)
+    Teacher(int newId, string newName, string newSurname, int newSubjectID, string newSubjectName, Group *newGroups,string newPassword="password")
+        : Person(newId, newName, newSurname, newPassword)
     {
         subjectID = newSubjectID;
         subjectName = newSubjectName;
