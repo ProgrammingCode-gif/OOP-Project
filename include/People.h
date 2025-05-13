@@ -1,5 +1,4 @@
 #include <iostream>
-#include "other.h"
 using namespace std;
 
 class Grade
