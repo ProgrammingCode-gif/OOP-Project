@@ -59,6 +59,11 @@ void read_grades(fstream &file, Grade* grades, int count) {
         grades[i] = g;
     }
 }
+void read_student(fstream &file, Student &student, Grade* grades, int gradeCount) {
+    student = Student(grades, gradeCount);
+    student.read_data(file);
+}
+
 
 
 int main()
@@ -80,20 +85,16 @@ int main()
     }
     file.close();
 
-    // fstream file;
     file.open("student.dat", ios::in| ios::out| ios::binary);
 
-    Student s0(allGrades[0], 4);
-    Student s1(allGrades[1], 4);
-    Student s2(allGrades[2], 4);
-    Student s3(allGrades[3], 4);
-    s0.read_data(file);
-    s1.read_data(file);
-    s2.read_data(file);
-    s3.read_data(file);
+    Student* allStudents = new Student[4]{};
+
+    for (int i = 0; i < 4; ++i) {
+        read_student(file, allStudents[i], allGrades[i], 4);
+    }
     
-    Student *students1 = new Student[2]{s0, s1};
-    Student *students2 = new Student[2]{s2, s3};
+    Student* students1 = new Student[2]{ allStudents[0], allStudents[1] };
+    Student* students2 = new Student[2]{ allStudents[2], allStudents[3] };
 
     Group group0(students1, 9, 2);
     Group group1(students2, 10, 2);
@@ -180,16 +181,16 @@ int main()
         switch (choosing)
         {
         case 1: // OOP
-            handle_course(s1, OOP_att, 1, "Objective Oriented Programming");
+            handle_course(students1[0], OOP_att, 1, "Objective Oriented Programming");
             break;
         case 2: // Calculus
-            handle_course(s1, Calc_att, 2, "Calculus");
+            handle_course(students1[0], Calc_att, 2, "Calculus");
             break;
         case 3: // Physics
-            handle_course(s1, Calc_att, 3, "Physics");
+            handle_course(students1[0], Calc_att, 3, "Physics");
             break;
         case 4: // Academic English
-            handle_course(s1, Calc_att, 4, "Academic English");
+            handle_course(students1[0], Calc_att, 4, "Academic English");
             break;
         default:
             cout << "Wrong!";
