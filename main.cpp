@@ -80,26 +80,11 @@ for (int i = 0; i < 4; ++i) {
 }
 
 
-    Student s0(243, "Shahzod", "Tashev", allGrades[0], 1);
-    Student s1(250, "Marat", "Turakulov", allGrades[1], 1);
-    Student s2(228, "Timur", "Shomuratov", allGrades[2], 1);
-    Student s3(237, "Bulat", "Tsoy", allGrades[3], 1);
+    Student s0(243, "Shahzod", "Tashev", allGrades[0], 4);
+    Student s1(250, "Marat", "Turakulov", allGrades[1], 4);
+    Student s2(228, "Timur", "Shomuratov", allGrades[2], 4);
+    Student s3(237, "Bulat", "Tsoy", allGrades[3], 4);
 
-    add_grade(s0, 2, "Calculus", 99, "21.03.25");
-    add_grade(s0, 3, "Physics", 98, "21.02.25");
-    add_grade(s0, 4, "AE", 97, "21.01.25");
-
-    add_grade(s1, 2, "Calculus", 95, "21.03.25");
-    add_grade(s1, 3, "Physics", 94, "21.02.25");
-    add_grade(s1, 4, "AE", 93, "21.01.25");
-
-    add_grade(s2, 2, "Calculus", 91, "21.03.25");
-    add_grade(s2, 3, "Physics", 90, "21.02.25");
-    add_grade(s2, 4, "AE", 89, "21.01.25");
-
-    add_grade(s3, 2, "Calculus", 87, "21.03.25");
-    add_grade(s3, 3, "Physics", 86, "21.02.25");
-    add_grade(s3, 4, "AE", 85, "21.01.25");
 
     Student *students1 = new Student[2]{s0, s1};
     Student *students2 = new Student[2]{s2, s3};
