@@ -42,13 +42,12 @@ public:
         subjectName = read_string(file);  // Read the subject name string
         date = read_string(file);  // Read the date string
     }
-    void write_data(fstream &file) {
-        file.write((char*)&subjectId, sizeof(subjectId));
-        file.write((char*)&score, sizeof(score));
-
-        write_string(file, subjectName);
-        write_string(file, date);
-    }
+    // void write_data(fstream &file) {
+    //     file.write((char*)&subjectId, sizeof(subjectId));
+    //     file.write((char*)&score, sizeof(score));
+    //     write_string(file, subjectName);
+    //     write_string(file, date);
+    // }
 private:
     string read_string(fstream &file){
         int len;
@@ -60,9 +59,9 @@ private:
         delete[] buffer;  
         return result;
     }
-    void write_string(fstream &file, string &str) {
-        int len = str.length();
-        file.write((char*)&len, sizeof(len));
-        file.write(str.c_str(), len);
-    }
+    // void write_string(fstream &file, string &str) {
+    //     int len = str.length();
+    //     file.write((char*)&len, sizeof(len));
+    //     file.write(str.c_str(), len);
+    // }
 };
