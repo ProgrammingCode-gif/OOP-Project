@@ -11,6 +11,6 @@ void add_grade(Student &stud, int newSubjectId, const std::string &newSubjectNam
 
 void add_grade2(Group &group);
 
-void read_grades(std::fstream &file, Grade *grades, int count);
-
 void read_student(std::fstream &file, Student &student, Grade *grades, int gradeCount);
+
+void loadAllGrades(Grade **allGrades, int gradeCount, int studentCount);

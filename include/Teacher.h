@@ -23,11 +23,11 @@ public:
     }
     void show_subjectID()// выводит ID предмета
     {
-        cout << subjectID;
+        cout << subjectID<<endl;
     }
     void show_subjectName()// выводит название предмета
     {
-        cout << subjectName;
+        cout << subjectName<<endl;
     }
     void show_all_groups()// Выводит все группы
     {
@@ -62,5 +62,32 @@ public:
         cin >> student_numb;
         choose_student(group_numb, student_numb);
     }
-
+    
+    void read_data (fstream &file)
+    {
+        Person::read_data(file);
+        file.read((char*)&subjectID, sizeof(subjectID));
+        subjectName = read_string(file);  
+    }
+    void write_data(fstream &file) {
+        Person::write_data(file);
+        file.write((char*)&subjectID, sizeof(subjectID));
+        write_string(file, subjectName);
+    }
+private:
+        string read_string(fstream &file){
+            int len;
+            file.read((char*)&len, sizeof(len)); 
+            char* buffer = new char[len + 1];  
+            file.read(buffer, len);  
+            buffer[len] = '\0';  
+            std::string result(buffer); 
+            delete[] buffer;  
+            return result;
+        }
+        void write_string(fstream &file, string &str) {
+            int len = str.length();
+            file.write((char*)&len, sizeof(len));
+            file.write(str.c_str(), len);
+        }
 };

@@ -48,14 +48,21 @@ void add_grade2(Group &group)
     group.get_student_ref(choosing - 1).Log();
 }
 
-void read_grades(fstream &file, Grade *grades, int count)
-{
-    for (int i = 0; i < count; ++i)
-    {
-        Grade g;
-        g.read_data(file);
-        grades[i] = g;
+void loadAllGrades(Grade** allGrades, int gradeCount, int studentCount) {
+    fstream file("Data/grade.dat", ios::in | ios::out | ios::binary);
+    if (!file) {
+        cerr << "Error opening file!" << endl;
+        return;
     }
+
+    for (int i = 0; i < studentCount; ++i) {
+        allGrades[i] = new Grade[gradeCount]{};
+        for (int j = 0; j < gradeCount; ++j) {
+            allGrades[i][j].read_data(file);
+        }
+    }
+
+    file.close();
 }
 
 void read_student(fstream &file, Student &student, Grade *grades, int gradeCount)
