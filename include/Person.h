@@ -42,12 +42,12 @@ public:
         surname = read_string(file);  
         password = read_string(file);  
     }
-        void write_data(fstream &file) {
-            file.write((char*)&id, sizeof(id));
-            write_string(file, name);
-            write_string(file, surname);
-            write_string(file, password);
-        }
+        // void write_data(fstream &file) {
+        //     file.write((char*)&id, sizeof(id));
+        //     write_string(file, name);
+        //     write_string(file, surname);
+        //     write_string(file, password);
+        // }
 private:
         string read_string(fstream &file){
             int len;
@@ -59,9 +59,9 @@ private:
             delete[] buffer;  
             return result;
         }
-        void write_string(fstream &file, string &str) {
-            int len = str.length();
-            file.write((char*)&len, sizeof(len));
-            file.write(str.c_str(), len);
-        }
+        // void write_string(fstream &file, string &str) {
+        //     int len = str.length();
+        //     file.write((char*)&len, sizeof(len));
+        //     file.write(str.c_str(), len);
+        // }
 };

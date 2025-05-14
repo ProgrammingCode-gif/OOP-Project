@@ -5,6 +5,8 @@
 #include "./include/Attendence.h"
 #include "./include/Student.h"
 #include "./include/Teacher.h"
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 void handle_course(Student &student, Attendence *attendenceArray, int subjectId, const string &courseName)
@@ -92,6 +94,7 @@ int main()
     for (int i = 0; i < 4; ++i) {
         read_student(file, allStudents[i], allGrades[i], 4);
     }
+    file.close();
     
     Student* students1 = new Student[2]{ allStudents[0], allStudents[1] };
     Student* students2 = new Student[2]{ allStudents[2], allStudents[3] };
@@ -99,18 +102,37 @@ int main()
     Group group0(students1, 9, 2);
     Group group1(students2, 10, 2);
     Group *groupAll = new Group[2]{group0, group1};
+    srand(static_cast<unsigned>(time(0)));
+    
+    file.open("attendence.dat", ios::in | ios::out | ios::binary);
 
-    Attendence d1g1s1("21.04.25", group0, 1);
-    Attendence d1g2s1("21.04.25", group1, 1);
-    Attendence d1g1s2("21.04.25", group0, 2);
-    Attendence d1g2s2("21.04.25", group1, 2);
-    Attendence d2g1s1("21.06.25", group0, 1);
-    Attendence d2g2s1("21.06.25", group1, 1);
-    Attendence d2g1s2("21.06.25", group0, 2);
-    Attendence d2g2s2("21.06.25", group1, 2);
+    const int attendenceCount = 32;
+    Attendence* allAttendence = new Attendence[attendenceCount];
 
-    Attendence *OOP_att = new Attendence[4]{d1g1s1, d1g2s1, d2g1s1, d2g2s1};
-    Attendence *Calc_att = new Attendence[4]{d1g1s2, d1g2s2, d2g1s2, d2g2s2};
+    for (int i = 0; i < attendenceCount; ++i) {
+        allAttendence[i].read_data(file);
+    }
+
+    for (int i = 0; i < 32; ++i) {
+        if ((i / 4) % 2 == 0) 
+            allAttendence[i].set_group(groupAll[0]);
+        else 
+            allAttendence[i].set_group(groupAll[1]);
+    }
+
+    Attendence* OOP_att = new Attendence[8];
+    Attendence* Calc_att = new Attendence[8];
+    Attendence* Physics_att = new Attendence[8];
+    Attendence* Academic_att = new Attendence[8];
+
+    for (int i = 0; i < 8; ++i) {
+        OOP_att[i] = allAttendence[i * 4 + 0];     
+        Calc_att[i] = allAttendence[i * 4 + 1];     
+        Physics_att[i] = allAttendence[i * 4 + 2];  
+        Academic_att[i] = allAttendence[i * 4 + 3]; 
+    }
+
+    file.close();
 
     Teacher t0(001, "Sharof", "Suvanov", 02, "i.t. IT", groupAll);
     Teacher t1(002, "Steftcho", "Dokov", 02, "i.t. IT", groupAll);
@@ -140,7 +162,7 @@ int main()
             {
             case 1:
                 cout << "Group 9 attendence list:\n";
-                for (int i = 0; i < 4; i += 2)
+                for (int i = 0; i < 8; i += 2)
                 {
                     OOP_att[i].Log_teacher();
                 }
@@ -158,7 +180,7 @@ int main()
             {
             case 1:
                 cout << "Group 10 attendence list:\n";
-                for (int i = 1; i < 4; i += 2)
+                for (int i = 1; i < 8; i += 2)
                 {
                     OOP_att[i].Log_teacher();
                 }
