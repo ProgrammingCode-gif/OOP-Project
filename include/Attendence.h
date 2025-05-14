@@ -34,7 +34,14 @@ public:// буллевый массив для посещаемости 1 бул
     {
         group = newGroup;
     }
-
+    void show_group()// показывает группу
+    {
+        cout << group.get_id() << endl;
+    }
+    void show_date()// показывает группу
+    {
+        cout << date << endl;
+    }
     void Log_teacher()// выводит посещаемость студентов для учителя
     {
         int count = group.get_Number_of();
@@ -102,10 +109,6 @@ public:// буллевый массив для посещаемости 1 бул
         //     file.write((char*)&attend, sizeof(attend));
         //     write_string(file, date);
         // }
-    void create_attendence(string newDate, Group newGroup, int newSubjID, bool newAttend[])// создаёт посещаемость
-    {
-
-    }
 
         private:
         string read_string(fstream &file){

@@ -20,6 +20,14 @@ public:
         password = newPassword;
     }
 
+    string get_id()//установить ID
+    {
+        return id;
+    }
+    string get_password()//установить ID
+    {
+        return password;
+    }
 
     string get_name()//получить имя
     {
@@ -33,7 +41,6 @@ public:
     virtual void Log()//вывод информации о человеке
     {
         cout << "ID: " << id << " Name: " << name << " Surname: " << surname << endl;
-        cout << "Password: " << password << endl;
     }
 
         void read_data(fstream &file)

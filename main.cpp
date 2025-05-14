@@ -17,24 +17,6 @@ int main()
     Grade* allGrades[studentCount];
     loadAllGrades(allGrades, gradeCount, studentCount);
 
-    
-
-    // file.open("Data/grade.dat", ios::in | ios::out | ios::binary);
-    
-    // const int gradeCount = 4;
-    // Grade* allGrades[4] = {
-    //     new Grade[gradeCount]{},
-    //     new Grade[gradeCount]{},
-    //     new Grade[gradeCount]{},
-    //     new Grade[gradeCount]{}
-    // };
-
-    // read_grades(file, allGrades[0], gradeCount);
-
-    // for (int i = 0; i < 4; ++i) {
-    //     read_grades(file, allGrades[i], gradeCount);
-    // }
-    // file.close();
     file.open("Data/student.dat", ios::in| ios::out| ios::binary);
 
     Student* allStudents = new Student[4]{};
@@ -58,27 +40,30 @@ int main()
 
     for (int i = 0; i < attendenceCount; ++i) {
         allAttendence[i].read_data(file);
-    }
-
-    for (int i = 0; i < 32; ++i) {
         if ((i / 4) % 2 == 0) 
             allAttendence[i].set_group(groupAll[0]);
         else 
-            allAttendence[i].set_group(groupAll[1]);
+            allAttendence[i].set_group(groupAll[1]);     
     }
 
-    Attendence* OOP_att = new Attendence[8];
-    Attendence* Calc_att = new Attendence[8];
-    Attendence* Physics_att = new Attendence[8];
-    Attendence* Academic_att = new Attendence[8];
+
+    Attendence* OOP_att = new Attendence[10];
+    Attendence* Calc_att = new Attendence[10];
+    Attendence* Physics_att = new Attendence[10];
+    Attendence* Academic_att = new Attendence[10];
 
     for (int i = 0; i < 8; ++i) {
-        OOP_att[i] = allAttendence[i * 4 + 0];     
-        Calc_att[i] = allAttendence[i * 4 + 1];     
-        Physics_att[i] = allAttendence[i * 4 + 2];  
-        Academic_att[i] = allAttendence[i * 4 + 3]; 
+        OOP_att[i] = allAttendence[i];        // 0 - 7
+        Calc_att[i] = allAttendence[i + 8];   // 8 - 15
+        Physics_att[i] = allAttendence[i + 16]; // 16 - 23
+        Academic_att[i] = allAttendence[i + 24]; // 24 - 31
     }
-
+    Attendence** allSubjects = new Attendence*[4];
+    allSubjects[0] = OOP_att;
+    allSubjects[1] = Calc_att;
+    allSubjects[2] = Physics_att;
+    allSubjects[3] = Academic_att;
+    
     file.close();
 
     file.open("Data/teacher.dat", ios::in|ios::out|ios::binary);
@@ -88,100 +73,63 @@ int main()
         allTeachers[i].read_data(file);
     }    
     file.close();
+
+    for (int i = 0; i < 4; i++)
+    {
+        allTeachers[i].set_groups(groupAll);
+    }
     
-
-
-    // int log_in;
-    // int choosing;
-    // string date;
-    // int score;
-    // cout << "what you want to be logged in?\n1)Admin\n2)Teacher\n3)Student\nEnter:";
-    // cin >> log_in;
-    // switch (log_in)
-    // {
-    // case 1:
-
-    //     break;
-    // case 2:
-    //     cout << "Welcome to Eclass, choose group to make changes\n";
-    //     t0.show_all_groups();
-    //     cout << "Enter:";
-    //     cin >> choosing;
-    //     switch (choosing)
+    
+    int log_in=2;
+    int person_numb=0;
+    string id;
+    string password;
+    // cout<<"Welcome to Eclass, please log in\n Enter your ID:";
+    // cin >> id;
+    // cout<<"Enter your password:";
+    // cin >> password;
+    // if(id[0] == 'P'|| id[0] == 'p'){
+    //     for (int i = 0; i < 4; i++)
+    //     {      
+    //         id[0] = 'P';
+    //         if(allTeachers[i].get_id() == id&& allTeachers[i].get_password() == password){
+    //             person_numb = i;
+    //             log_in = 2;
+    //         }
+    //     }
+    // }else if(id[0] == 'S'|| id[0] == 's'){
+    //         for (int i = 0; i < 4; i++)
     //     {
-    //     case 1: // group 9
-    //         cout << "You chose group 9. What you want to do?\n1)Check attendence\n2)Add grade\nEnter:";
-    //         cin >> choosing;
-    //         switch (choosing)
-    //         {
-    //         case 1:
-    //             cout << "Group 9 attendence list:\n";
-    //             for (int i = 0; i < 8; i += 2)
-    //             {
-    //                 OOP_att[i].Log_teacher();
-    //             }
-    //             break;
-    //         case 2:
-    //             add_grade2(group0);
-    //         default:
+    //         id[0] = 'S';
+    //         if(allStudents[i].get_id() == id&& allStudents[i].get_password() == password){
+    //             person_numb = i;
+    //             log_in = 3;
     //             break;
     //         }
-    //         break;
-    //     case 2: // group 10
-    //         cout << "You chose group 10. What you want to do?\n1)Check attendence\n2)Add grade\nEnter:";
-    //         cin >> choosing;
-    //         switch (choosing)
-    //         {
-    //         case 1:
-    //             cout << "Group 10 attendence list:\n";
-    //             for (int i = 1; i < 8; i += 2)
-    //             {
-    //                 OOP_att[i].Log_teacher();
-    //             }
-    //             break;
-    //         case 2:
-    //             add_grade2(group1);
-    //         default:
-    //             break;
-    //         }
-    //         break;
-    //     default:
-    //         break;
     //     }
+    // }else{
+    //     cout<<"WRONG3!\n";
+    // }
 
-    //     break;
-    //     case 3:
-    //     cout << "Welcome to Eclass, choose course you want to check\n1)Objective Oriented Programming\n2)Calculus\n3)Physics\n4)Academic English\nEnter:";
-    //     cin >> choosing;
-    
-    //     switch (choosing)
-    //     {
-    //     case 1: // OOP
-    //         handle_course(students1[0], OOP_att, 1, "Objective Oriented Programming");
-    //         break;
-    //     case 2: // Calculus
-    //         handle_course(students1[0], Calc_att, 2, "Calculus");
-    //         break;
-    //     case 3: // Physics
-    //         handle_course(students1[0], Calc_att, 3, "Physics");
-    //         break;
-    //     case 4: // Academic English
-    //         handle_course(students1[0], Calc_att, 4, "Academic English");
-    //         break;
-    //     default:
-    //         cout << "Wrong!";
-    //         break;
-    //     }
-    //     break;
-    // default:
-    //     cout << "Wrong!";
-    // };
 
-    // delete[] OOP_att;
-    // delete[] Calc_att;
-    // delete[] allGrades;
-    // delete[] students1;
-    // delete[] students2;
-    // delete[] groupAll;
-    // return 0;
+switch (log_in) {
+        case 2:
+            teacher_menu(allTeachers, allSubjects, groupAll, person_numb);
+            break;
+        case 3:
+            student_menu(students1, OOP_att, Calc_att, Physics_att, Academic_att, allTeachers, person_numb);
+            break;
+        default:
+            cout << "Invalid input.\n";
+    }
+
+
+
+    delete[] OOP_att;
+    delete[] Calc_att;
+    delete[] allGrades;
+    delete[] students1;
+    delete[] students2;
+    delete[] groupAll;
+    return 0;
 }

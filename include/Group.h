@@ -41,6 +41,10 @@ public:
     {
         return numberOfStudents;
     }
+    int get_groupID()//получить номер группы
+    {
+        return GroupId;
+    }
     void log()//вывести каждого студента
     {
         for (int i = 0; i < numberOfStudents; i++)

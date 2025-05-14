@@ -31,8 +31,7 @@ public:
     }
     void show_all_groups()// Выводит все группы
     {
-        int arrSize = 2;
-        for (int i = 0; i < arrSize; i++)
+        for (int i = 0; i < 2; i++)
         {
             cout << i + 1 << ") " << "Group number " << groups[i].get_id() << endl;
         }
@@ -45,9 +44,19 @@ public:
         show_subjectName();
         show_subjectID();
     }
-    // void add_grade(Student student)
-    // {
-    // }
+    int get_subjectID()//возвращает ID предмета
+    {
+        return subjectID;
+    }
+    string get_subjectName()//возвращает ID предмета
+    {
+        return subjectName;
+    }
+    void set_groups(Group *newGroups)//устанавливает группы
+    {
+        groups = newGroups;
+    }
+    
     void choose_student(int group_numb, int student_numb)//выводит студентов для выбора
     {
         groups[group_numb - 1].get_student(student_numb - 1).Log();
