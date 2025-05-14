@@ -72,7 +72,7 @@ int main()
 {
 
     fstream file;
-    file.open("grade.dat", ios::in | ios::out | ios::binary);
+    file.open("Data/grade.dat", ios::in | ios::out | ios::binary);
 
     const int gradeCount = 4;
     Grade* allGrades[4] = {
@@ -87,7 +87,7 @@ int main()
     }
     file.close();
 
-    file.open("student.dat", ios::in| ios::out| ios::binary);
+    file.open("Data/student.dat", ios::in| ios::out| ios::binary);
 
     Student* allStudents = new Student[4]{};
 
@@ -104,7 +104,7 @@ int main()
     Group *groupAll = new Group[2]{group0, group1};
     srand(static_cast<unsigned>(time(0)));
     
-    file.open("attendence.dat", ios::in | ios::out | ios::binary);
+    file.open("Data/attendence.dat", ios::in | ios::out | ios::binary);
 
     const int attendenceCount = 32;
     Attendence* allAttendence = new Attendence[attendenceCount];
