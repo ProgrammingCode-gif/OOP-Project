@@ -6,29 +6,38 @@
 #include "./include/Student.h"
 #include "./include/Teacher.h"
 #include "./include/Utils.h"
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
 int main()
 {
-
+    
     fstream file;
+    
     file.open("Data/grade.dat", ios::in | ios::out | ios::binary);
-
+    
     const int gradeCount = 4;
     Grade* allGrades[4] = {
-    new Grade[gradeCount]{},
-    new Grade[gradeCount]{},
-    new Grade[gradeCount]{},
-    new Grade[gradeCount]{}
+        new Grade[gradeCount]{},
+        new Grade[gradeCount]{},
+        new Grade[gradeCount]{},
+        new Grade[gradeCount]{}
     };
 
     for (int i = 0; i < 4; ++i) {
         read_grades(file, allGrades[i], gradeCount);
     }
     file.close();
+    // file.open("Data/student.dat", ios::in | ios::out | ios::binary);
+    // Student s0("S243", "Shahzod", "Tashev", allGrades[0], 1, "qwerty243");
+    // Student s1("S250", "Marat", "Turakulov", allGrades[0], 1, "qwerty250");
+    // Student s2("S228", "Timur", "Shomuratov", allGrades[0], 1, "qwerty228");
+    // Student s3("S237", "Bulat", "Tsoy", allGrades[0], 1, "qwerty237");
 
+    // s0.write_data(file);
+    // s1.write_data(file);
+    // s2.write_data(file);
+    // s3.write_data(file);
+    // file.close();
     file.open("Data/student.dat", ios::in| ios::out| ios::binary);
 
     Student* allStudents = new Student[4]{};
@@ -44,7 +53,6 @@ int main()
     Group group0(students1, 9, 2);
     Group group1(students2, 10, 2);
     Group *groupAll = new Group[2]{group0, group1};
-    srand(static_cast<unsigned>(time(0)));
     
     file.open("Data/attendence.dat", ios::in | ios::out | ios::binary);
 
@@ -76,8 +84,9 @@ int main()
 
     file.close();
 
-    Teacher t0(001, "Sharof", "Suvanov", 02, "i.t. IT", groupAll);
-    Teacher t1(002, "Steftcho", "Dokov", 02, "i.t. IT", groupAll);
+    
+    Teacher t0("P001", "Sharof", "Suvanov", 02, "i.t. IT", groupAll, "password");
+    Teacher t1("P002", "Steftcho", "Dokov", 02, "i.t. IT", groupAll, "password");
 
     int log_in;
     int choosing;
@@ -164,11 +173,7 @@ int main()
     default:
         cout << "Wrong!";
     };
-    // t0.show_all();
-    // s1.Log();
-    // group1.log();
-    //  t0.choose_group(2);
-
+    
     delete[] OOP_att;
     delete[] Calc_att;
     delete[] allGrades;

@@ -1,17 +1,18 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <string>
 using namespace std;
 
 class Person
 {
-    int id;//also login
+    string id;//also login
     string name;
     string surname;
     string password;
 public:
     Person() {};
-    Person(int newId, string newName, string newSurname, string newPassword)
+    Person(string newId, string newName, string newSurname, string newPassword)
     {
         id = newId;
         name = newName;
@@ -32,22 +33,22 @@ public:
     virtual void Log()//вывод информации о человеке
     {
         cout << "ID: " << id << " Name: " << name << " Surname: " << surname << endl;
+        cout << "Password: " << password << endl;
     }
 
         void read_data(fstream &file)
     {
-        file.read((char*)&id, sizeof(id));
-
+        id = read_string(file); 
         name = read_string(file); 
         surname = read_string(file);  
         password = read_string(file);  
     }
-        // void write_data(fstream &file) {
-        //     file.write((char*)&id, sizeof(id));
-        //     write_string(file, name);
-        //     write_string(file, surname);
-        //     write_string(file, password);
-        // }
+        void write_data(fstream &file) {
+            write_string(file, id);
+            write_string(file, name);
+            write_string(file, surname);
+            write_string(file, password);
+        }
 private:
         string read_string(fstream &file){
             int len;
@@ -59,9 +60,9 @@ private:
             delete[] buffer;  
             return result;
         }
-        // void write_string(fstream &file, string &str) {
-        //     int len = str.length();
-        //     file.write((char*)&len, sizeof(len));
-        //     file.write(str.c_str(), len);
-        // }
+        void write_string(fstream &file, string &str) {
+            int len = str.length();
+            file.write((char*)&len, sizeof(len));
+            file.write(str.c_str(), len);
+        }
 };

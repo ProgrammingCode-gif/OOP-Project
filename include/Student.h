@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "Person.h"
 #include "Grade.h"
 using namespace std;
@@ -16,7 +17,7 @@ public:
         grades = nullptr;
         gradesCount = 0;
     }
-    Student(int newId, string newName, string newSurname, Grade *newGrades, int count,string newPassword="password")
+    Student(string newId, string newName, string newSurname, Grade *newGrades, int count,string newPassword="password")
         : Person(newId, newName, newSurname, newPassword)
     {
         grades = new Grade[count];

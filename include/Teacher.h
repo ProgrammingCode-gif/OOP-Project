@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "Person.h"
 #include "Group.h"
 using namespace std;
@@ -13,7 +14,7 @@ class Teacher : public Person
 
 public:
     Teacher() {};
-    Teacher(int newId, string newName, string newSurname, int newSubjectID, string newSubjectName, Group *newGroups,string newPassword="password")
+    Teacher(string newId, string newName, string newSurname, int newSubjectID, string newSubjectName, Group *newGroups,string newPassword="password")
         : Person(newId, newName, newSurname, newPassword)
     {
         subjectID = newSubjectID;

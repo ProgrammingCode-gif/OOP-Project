@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "Group.h"
 using namespace std;
@@ -96,12 +97,17 @@ public:// буллевый массив для посещаемости 1 бул
 
         date = read_string(file); 
     }
-        void write_data(fstream &file) {
-            file.write((char*)&subjID, sizeof(subjID));
-            file.write((char*)&attend, sizeof(attend));
-            write_string(file, date);
-        }
-private:
+        // void write_data(fstream &file) {
+        //     file.write((char*)&subjID, sizeof(subjID));
+        //     file.write((char*)&attend, sizeof(attend));
+        //     write_string(file, date);
+        // }
+    void create_attendence(string newDate, Group newGroup, int newSubjID, bool newAttend[])// создаёт посещаемость
+    {
+
+    }
+
+        private:
         string read_string(fstream &file){
             int len;
             file.read((char*)&len, sizeof(len)); 
@@ -112,9 +118,9 @@ private:
             delete[] buffer;  
             return result;
         }
-        void write_string(fstream &file, string &str) {
-            int len = str.length();
-            file.write((char*)&len, sizeof(len));
-            file.write(str.c_str(), len);
-        }
+        // void write_string(fstream &file, string &str) {
+        //     int len = str.length();
+        //     file.write((char*)&len, sizeof(len));
+        //     file.write(str.c_str(), len);
+        // }
 };
