@@ -17,7 +17,7 @@ public:
         grades = nullptr;
         gradesCount = 0;
     }
-    Student(string newId, string newName, string newSurname, Grade *newGrades, int count,string newPassword="password")
+    Student(string newId, string newName, string newSurname, Grade *newGrades, int count, string newPassword = "password")
         : Person(newId, newName, newSurname, newPassword)
     {
         grades = new Grade[count];
@@ -44,7 +44,6 @@ public:
         for (int i = 0; i < gradesCount; ++i)
             grades[i] = other.grades[i];
     }
-
 
     // оператор присваивания
     Student &operator=(const Student &other)
@@ -80,8 +79,12 @@ public:
         gradesCount++;
     }
 
+    Grade get_grade(int index) // функция получения оценок для студента
+    {
+        return grades[index];
+    }
 
-    void get_Grades_by_Subject(int subjectId) 
+    void get_Grades_by_Subject(int subjectId)
     {
         for (int i = 0; i < gradesCount; i++)
         {
@@ -100,6 +103,4 @@ public:
             grades[i].Log();
         }
     }
-
-    
 };

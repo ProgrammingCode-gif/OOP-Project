@@ -17,7 +17,7 @@ public:
         students = newStudents;
         numberOfStudents = count;
     };
-    int get_id()//получить номер группы
+    int get_ID()//получить номер группы
     {
         return GroupId;
     }
@@ -41,9 +41,9 @@ public:
     {
         return numberOfStudents;
     }
-    int get_groupID()//получить номер группы
+    void show_id()//получить номер группы
     {
-        return GroupId;
+        cout<< GroupId;
     }
     void log()//вывести каждого студента
     {

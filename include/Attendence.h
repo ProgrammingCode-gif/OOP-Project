@@ -11,7 +11,7 @@ class Attendence
     Group group;
     int subjID;
     bool attend[2] = {false, false}; // Надо либо сделать что бы подстраивалось под количество в группе либо одинаковое количество всегда
-public:// буллевый массив для посещаемости 1 булеан для 1 студента из массива group
+public:                              // буллевый массив для посещаемости 1 булеан для 1 студента из массива group
     Attendence() {};
     Attendence(string newDate, Group newGroup, int newSubjID)
     {
@@ -30,19 +30,23 @@ public:// буллевый массив для посещаемости 1 бул
         }
     }
 
-    void set_group(Group newGroup)// устанавливает группу
+    void set_group(Group newGroup) // устанавливает группу
     {
         group = newGroup;
     }
-    void show_group()// показывает группу
+    void show_group() // показывает группу
     {
-        cout << group.get_id() << endl;
+        cout << group.get_ID() << endl;
     }
-    void show_date()// показывает группу
+    Group get_group() // возвращает группу
+    {
+        return group;
+    }
+    void show_date() // показывает группу
     {
         cout << date << endl;
     }
-    void Log_teacher()// выводит посещаемость студентов для учителя
+    void Log_teacher() // выводит посещаемость студентов для учителя
     {
         int count = group.get_Number_of();
         cout << "Name\t" << date << endl;
@@ -53,14 +57,16 @@ public:// буллевый массив для посещаемости 1 бул
             cout << "\t";
             if (attend[i])
             {
-                cout<<"yes";
-            }else{
-            cout << "no";
+                cout << "yes";
+            }
+            else
+            {
+                cout << "no";
             }
             cout << endl;
         }
     }
-    void Log_student(int student_numb)// выводит посещаемость для студента
+    void Log_student(int student_numb) // выводит посещаемость для студента
     {
 
         cout << date << "\t";
@@ -75,12 +81,12 @@ public:// буллевый массив для посещаемости 1 бул
         }
         cout << endl;
     }
-    void check_attend(int stud_numb)// что-бы поменять посещаемость студента
+    void check_attend(int stud_numb) // что-бы поменять посещаемость студента
     {
     }
-    void Log()// выводит информацию о посещаемости
+    void Log() // выводит информацию о посещаемости
     {
-        
+
         cout << "ID: " << subjID << " Date: " << date << endl;
         cout << "Attendence: ";
         for (int i = 0; i < 32; i++)
@@ -93,37 +99,36 @@ public:// буллевый массив для посещаемости 1 бул
             {
                 cout << "no ";
             }
-
-            
         }
     }
-        void read_data(fstream &file)
+    void read_data(fstream &file)
     {
-        file.read((char*)&subjID, sizeof(subjID));
-        file.read((char*)&attend, sizeof(attend));
+        file.read((char *)&subjID, sizeof(subjID));
+        file.read((char *)&attend, sizeof(attend));
 
-        date = read_string(file); 
+        date = read_string(file);
     }
-        // void write_data(fstream &file) {
-        //     file.write((char*)&subjID, sizeof(subjID));
-        //     file.write((char*)&attend, sizeof(attend));
-        //     write_string(file, date);
-        // }
+    // void write_data(fstream &file) {
+    //     file.write((char*)&subjID, sizeof(subjID));
+    //     file.write((char*)&attend, sizeof(attend));
+    //     write_string(file, date);
+    // }
 
-        private:
-        string read_string(fstream &file){
-            int len;
-            file.read((char*)&len, sizeof(len)); 
-            char* buffer = new char[len + 1];  
-            file.read(buffer, len);  
-            buffer[len] = '\0';  
-            std::string result(buffer); 
-            delete[] buffer;  
-            return result;
-        }
-        // void write_string(fstream &file, string &str) {
-        //     int len = str.length();
-        //     file.write((char*)&len, sizeof(len));
-        //     file.write(str.c_str(), len);
-        // }
+private:
+    string read_string(fstream &file)
+    {
+        int len;
+        file.read((char *)&len, sizeof(len));
+        char *buffer = new char[len + 1];
+        file.read(buffer, len);
+        buffer[len] = '\0';
+        std::string result(buffer);
+        delete[] buffer;
+        return result;
+    }
+    // void write_string(fstream &file, string &str) {
+    //     int len = str.length();
+    //     file.write((char*)&len, sizeof(len));
+    //     file.write(str.c_str(), len);
+    // }
 };
